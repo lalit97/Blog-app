@@ -3,12 +3,12 @@
 {% block content %}
     <div class="post">        
         {% if user.is_authenticated %}
-        	<a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">edit post</span></a>
+        	<a class="btn btn-default" href="{% url 'blog:post_edit' pk=post.pk %}">edit post</span></a>
         {% endif %}
         <h2>{{ post.title }}</h2>
         <p>{{ post.text|linebreaksbr }}</p>
         <p>
-            <button><a href="{%url 'post_clap' pk=post.pk %}"><img src="{% static 'blog/images/clap.png' %}" width="20px" height="20px"></a></button>
+            <button><a href="{%url 'blog:post_clap' pk=post.pk %}"><img src="{% static 'blog/images/clap.png' %}" width="20px" height="20px"></a></button>
              {{ post.claps }}
         </p>
     </div>

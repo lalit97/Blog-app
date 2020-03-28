@@ -1,8 +1,9 @@
-from .models import Post 
-from .forms import PostForm
+from .models import Post
 from datetime import date
-from django.shortcuts import render, get_object_or_404, redirect 
-
+from .forms import PostForm
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
 
 def post_list(request):
 	posts = Post.objects.all()
@@ -31,7 +32,6 @@ def post_new(request):
 			return redirect('post_detail', pk=post.pk)
 	else:		
 		form = PostForm()
-	
 	context = {
 		'form' : form
 	}
@@ -49,7 +49,6 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-
     context = {
     	'form' : form
     }
@@ -60,4 +59,4 @@ def post_clap(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.claps += 1
     post.save()
-    return redirect('post_detail', pk=post.pk)
+    return redirect(reverse('blog:post_detail', kwargs={'pk':pk}))

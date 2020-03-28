@@ -9,13 +9,12 @@
             </div>
             
             <h2>
-                <a href="{%url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                <a href="{%url 'blog:post_detail' pk=post.pk %}">{{ post.title }}</a>
             </h2>
             <p>
                 {{ post.text|truncatewords:30 }}
-                <a href="{%url 'post_detail' pk=post.pk %}">read more</a>
+                <a href="{%url 'blog:post_detail' pk=post.pk %}">read more</a>
             </p>
-
             <p>By {{ post.author }}</p>
             <div class="date">
                 <p>
@@ -24,7 +23,6 @@
                     min read
                 </p>
             </div>
-
         </div>
     {% endfor %}
 {% endblock %}
